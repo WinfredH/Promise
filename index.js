@@ -16,7 +16,8 @@ class Promise {
   }
 
   then (onFulfilled, onRejected) {
-    let aNewPromise = new Promise((resolve, reject) => {
+    // 返回新的Promise实例，实现链式调用
+    return new Promise((resolve, reject) => {
       if (this.state === 'fulfilled') {
         const res = onFulfilled(this.value)
         resolvePromise(aNewPromise, res, resolve, reject)
@@ -39,8 +40,6 @@ class Promise {
         })
       }
     })
-    // 返回Promise实例，实现链式调用
-    return aNewPromise
   }
 
   resolve (value) {
